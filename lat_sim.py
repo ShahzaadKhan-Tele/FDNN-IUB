@@ -55,17 +55,7 @@ def bandwidth_o_time_single(data):
     plt.savefig(combined_file_path)
     plt.close()
     print(f"Saved: {combined_file_path}")
-# # Example Test Data
-# data = {
-#     "Bandwidth": {
-#         "wifi_bandwidth": [10, 20, 30, 40, 50],
-#         "lifi_bandwidth": [15, 25, 35, 45, 55],
-#         "hybrid_bandwidth": [20, 30, 40, 50, 60]
-#     }
-# }
 
-# bandwidth_o_time_single(data)
-  # Close the figure to free up memory
 
 
 
