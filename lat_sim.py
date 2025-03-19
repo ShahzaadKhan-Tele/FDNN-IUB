@@ -13,7 +13,7 @@ def bandwidth_o_time_single(data):
     lists = ["wifi_bandwidth", "lifi_bandwidth", "hybrid_bandwidth"]
     colors = ['blue', 'orange', 'green']
 
-    os.makedirs("Data Images", exist_ok=True)
+    os.makedirs(r"FDNN-IUB\Data Images", exist_ok=True)
 
     for i, li in enumerate(lists):
         ty = band_la.get(li, [])
@@ -35,7 +35,7 @@ def bandwidth_o_time_single(data):
         plt.show()  # Show the individual plot
 
         # Save individual plot
-        file_path = os.path.join("Data Images", f"{li}.png")
+        file_path = os.path.join(r"FDNN-IUB\Data Images" f"{li}.png")
         plt.savefig(file_path)
         print(f"Saved: {file_path}")
         plt.close()
@@ -77,7 +77,7 @@ def plot_mul_single(data):
     plt.legend()
     plt.grid(False)
     plt.show()
-    plt.savefig(f"Data Images\All Bandwidths.png")
+    plt.savefig(f"FDNN-IUB\Data Images\All Bandwidths.png")
 def plot_graphs(figx=None,figy=None,x_p=None,y_p=None,mul=False,mul_plot=0,plotlist=[],m_k=None,lb=None,ls=None,x=None,y=None,lengend="",grid=False,show=False,name=None,color="blue",tight=False):
     plt.figure(figsize=(figx,figy))
     labels=[]
@@ -100,7 +100,7 @@ def plot_graphs(figx=None,figy=None,x_p=None,y_p=None,mul=False,mul_plot=0,plotl
     if show:
         plt.show()
     if name:
-        plt.savefig(f"Data Images\{name}")
+        plt.savefig(f"FDNN-IUB\Data Images\{name}")
     if tight:
         plt.tight_layout()
     plt.close() 
@@ -180,8 +180,14 @@ def calculate_latency(network_type="Wi-Fi", speed_mbps=20):
 #     plt.show()
 if __name__ == "__main__":
     print("Checking For Latencies:\n")
-    with open("observations.json", "r") as file:
-        data = json.load(file)
+    
+    file_path = os.path.join(os.path.dirname(__file__), "observations.json")
+
+    if not os.path.exists(file_path):
+        print(f"Error: File not found - {file_path}")
+    else:
+        with open(file_path, "r") as file:
+            data = json.load(file)  
     print("Data of Latencies")
     latencie_overtime(data)
     # latencie_overtime("Wi-Fi",c="b")
