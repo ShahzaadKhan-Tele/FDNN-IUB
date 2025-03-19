@@ -15,8 +15,6 @@ def bandwidth_o_time_single(data):
 
     os.makedirs("Data Images", exist_ok=True)
 
-    plt.figure(figsize=(10, 6))  # Create a figure for the combined plot
-
     for i, li in enumerate(lists):
         ty = band_la.get(li, [])
 
@@ -34,27 +32,14 @@ def bandwidth_o_time_single(data):
         plt.title(f'{li} Over Time')
         plt.legend()
         plt.grid(False)
+        plt.show()  # Show the individual plot
 
         # Save individual plot
         file_path = os.path.join("Data Images", f"{li}.png")
         plt.savefig(file_path)
-        plt.close()
         print(f"Saved: {file_path}")
+        plt.close()
 
-        # Add data to combined plot
-        plt.plot(time_points, ty, label=f"{li}", color=colors[i])
-
-    # Final combined plot
-    plt.xlabel('Time (s)')
-    plt.ylabel('Bandwidth Utilization (%)')
-    plt.title('All Bandwidths Over Time')
-    plt.legend()
-    plt.grid(False)
-
-    combined_file_path = os.path.join("Data Images", "All_Bandwidths.png")
-    plt.savefig(combined_file_path)
-    plt.close()
-    print(f"Saved: {combined_file_path}")
 
 
 
@@ -204,43 +189,9 @@ if __name__ == "__main__":
     # latencie_overtime("Hybrid",c="r")
     # exit()
     print("Data of Wifi Lifi hybrid Bandwidth Function")
-    bandwidth_o_time_single(data)
     print("Data of Wifi Bandwidth Function")
-
+    
+    bandwidth_o_time_single(data)
     plot_mul_single(data)
     plot_user_lat_cov_snr(data)
-    # import numpy as np
-    # import numpy as np
-    # import matplotlib.pyplot as plt
-    # from mpl_toolkits.mplot3d import Axes3D
-
-    # # Define data points
-    # user_density = np.array([10, 20, 30, 40])  # X-axis
-    # throughput = np.array([100, 150, 200, 250])  # Y-axis
-    # network_capacity = np.array([[2000, 4000, 6000, 8000],  
-    #                             [2500, 5000, 7500, 10000],
-    #                             [1500, 3000, 4500, 6000],
-    #                             [1000, 2000, 3000, 4000]])
-
-    # # Create a meshgrid
-    # X, Y = np.meshgrid(user_density, throughput)
-
-    # # Plot the figure
-    # fig = plt.figure(figsize=(8, 6))
-    # ax = fig.add_subplot(111, projection='3d')
-
-    # # Surface plot with custom color map
-    # ax.plot_surface(X, Y, network_capacity, cmap="coolwarm", edgecolor="k", alpha=0.8)
-
-    # # Labels
-    # ax.set_xlabel("User Density (users/m²)")
-    # ax.set_ylabel("Throughput (Mbps)")
-    # ax.set_zlabel("Network Capacity (Mbps)")
-
-    # # Adjust view angle to match original image
-    # ax.view_init(elev=20, azim=-135)  
-
-    # # Show plot
-    # plt.show()
-
-
+    
